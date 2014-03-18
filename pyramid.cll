@@ -1,16 +1,23 @@
-arraybase = 1100
-arraylen = 3
+#define ORIGINATOR_ADDRESS 1000
+#define TOTAL_MEMBERS 1001
+#define MEMBER_DATABASE_START 1100
+#define MEMBER_COLUMNS 3
+
+arraybase = MEMBER_DATABASE_START
+arraylen = MEMBER_COLUMNS
+
 if tx.datan:
 
     // Initialize the pyramid with the founder.
     if tx.data[0] == 0:
+
         // Only initialize once.
-        if contract.storage[1000] > 0:
+        if contract.storage[ORIGINATOR_ADDRESS] > 0:
             stop
 
         // The sender is now the top of the pyramid
-        contract.storage[1000] = tx.sender
-        contract.storage[1001] = 1
+        contract.storage[ORIGINATOR_ADDRESS] = tx.sender
+        contract.storage[TOTAL_MEMBERS] = 1
 
         // Set them as the first member number, as their own reference.
         contract.storage[arraybase] = tx.sender
@@ -24,7 +31,7 @@ if tx.datan:
     if tx.data[0] == 1:
 
         // Check if pyramid is initialized
-        if contract.storage[1000] > 1:
+        if contract.storage[ORIGINATOR_ADDRESS] > 1:
             stop
 
         // Check if the reference exists
@@ -32,8 +39,8 @@ if tx.datan:
             stop
         
         // Make a new member number.
-        membernumber = contract.storage[1001] + 1
-        contract.storage[1001] = membernumber
+        membernumber = contract.storage[TOTAL_MEMBERS] + 1
+        contract.storage[TOTAL_MEMBERS] = membernumber
 
         // Remember me as my new number
         contract.storage[tx.sender] = membernumber

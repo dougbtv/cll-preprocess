@@ -75,7 +75,7 @@
 			<key>comment</key>
 			<string>contract variables</string>
 			<key>match</key>
-			<string>(if|elif|stop|while|else|\%|/|=|==|&gt;|&gt;=|&lt;=|\+|\-|\*|\^|\:)</string>
+			<string>(if|elif|stop|while|else|\#define|\%|/|=|==|&gt;|&gt;=|&lt;=|\+|\-|\*|\^|\:)</string>
 			<key>name</key>
 			<string>keyword.control.cll</string>
 		</dict>
@@ -94,6 +94,22 @@
 			<string>\b([0-9]+)\b</string>
 			<key>name</key>
 			<string>constant.numeric.cll</string>
+		</dict>
+		<dict>
+			<key>captures</key>
+			<dict>
+				<key>1</key>
+				<dict>
+					<key>name</key>
+					<string>entity.name.function.cll</string>
+				</dict>
+			</dict>
+			<key>comment</key>
+			<string>constants with all caps</string>
+			<key>match</key>
+			<string>\b([A-Z_]+)\b</string>
+			<key>name</key>
+			<string>entity.name.function.cll</string>
 		</dict>
 	</array>
 	<key>scopeName</key>

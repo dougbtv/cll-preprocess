@@ -26,7 +26,7 @@
 	         },
 	        "comment": "double slash comments"
 	      },
-	      { "match": "(if|elif|stop|while|else|\\%|/|=|==|>|>=|<=|\\+|\\-|\\*|\\^|\\:)",
+	      { "match": "(if|elif|stop|while|else|\\#define|\\%|/|=|==|>|>=|<=|\\+|\\-|\\*|\\^|\\:)",
 	        "name": "keyword.control.cll",
 	        "captures": {
 	            "1": { "name": "keyword.control.cll" }
@@ -39,13 +39,29 @@
 	            "1": { "name": "constant.numeric.cll" }
 	         },
 	        "comment": "numbers"
+	      },
+	      { "match": "\\b([A-Z_]+)\\b",
+	        "name": "entity.name.function.cll",
+	        "captures": {
+	            "1": { "name": "entity.name.function.cll" }
+	         },
+	        "comment": "constants with all caps"
 	      }
 	]
 }
 
 /*
 
- 'sha256': ['SHA256', 3],
+
+
+<dict>
+		<key>match</key>
+		<string>(?i)\b(TRUE|FALSE|NULL|__(FILE|FUNCTION|CLASS|METHOD|LINE)__|ON|OFF|YES|NO|NL|BR|TAB)\b</string>
+		<key>name</key>
+		<string>constant.language.php</string>
+	</dict>
+
+	 'sha256': ['SHA256', 3],
     'sha3': ['SHA3', 3],
     'ripemd160': ['RIPEMD160', 3],
     'ecsign': ['ECSIGN', 2],
