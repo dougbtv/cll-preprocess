@@ -5,9 +5,9 @@ Ethereum CLL Preprocessor
 
 - Allows you to enter c-like `//` commented lines
 
-```cpp
-// This is a comment.
-val = tx.data[0]
+ ```cpp
+ // This is a comment.
+ val = tx.data[0]
 ```
 - Strips empty lines.
 
