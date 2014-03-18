@@ -75,7 +75,7 @@
 			<key>comment</key>
 			<string>contract variables</string>
 			<key>match</key>
-			<string>(if|elif|stop|while|\%|/|=|==|&gt;|&gt;=|&lt;=|\+|\-|\*|\^|\:)</string>
+			<string>(if|elif|stop|while|else|\%|/|=|==|&gt;|&gt;=|&lt;=|\+|\-|\*|\^|\:)</string>
 			<key>name</key>
 			<string>keyword.control.cll</string>
 		</dict>

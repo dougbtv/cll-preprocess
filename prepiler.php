@@ -1,17 +1,14 @@
 <?php
 
-$pp = new prepiler();
+$pp = new prepiler($argv);
 
 class prepiler {
 
-	var $infile = "dougtests.txt";
-	var $outfile = "tests.txt";
+	var $outfile = "/tmp/compile.cll";
 
-	function prepiler() {
+	function prepiler($argv) {
 
-		$file = file_get_contents($this->infile);
-
-		$foo = 1500;
+		$file = file_get_contents($argv[1]);
 
 		$result = "";
 		$lines = preg_split("/\n/", $file);

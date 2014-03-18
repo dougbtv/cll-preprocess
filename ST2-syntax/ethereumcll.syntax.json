@@ -26,7 +26,7 @@
 	         },
 	        "comment": "double slash comments"
 	      },
-	      { "match": "(if|elif|stop|while|\\%|/|=|==|>|>=|<=|\\+|\\-|\\*|\\^|\\:)",
+	      { "match": "(if|elif|stop|while|else|\\%|/|=|==|>|>=|<=|\\+|\\-|\\*|\\^|\\:)",
 	        "name": "keyword.control.cll",
 	        "captures": {
 	            "1": { "name": "keyword.control.cll" }
