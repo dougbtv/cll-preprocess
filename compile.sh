@@ -1,7 +1,7 @@
 #!/bin/bash
 echo $1
 if [[ -e $1 ]]; then
-	php -q prepiler.php $1
+	php -q cllPreProcessor.php $1
 	cd compiler
 	python docompile.py
 	cd ../

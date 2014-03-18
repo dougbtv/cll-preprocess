@@ -1,12 +1,12 @@
 <?php
 
-$pp = new prepiler($argv);
+$cllpp = new cllPreProcessor($argv);
 
-class prepiler {
+class cllPreProcessor {
 
 	var $outfile = "/tmp/compile.cll";
 
-	function prepiler($argv) {
+	function cllPreProcessor($argv) {
 
 		$file = file_get_contents($argv[1]);
 
