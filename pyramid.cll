@@ -1,0 +1,73 @@
+arraybase = 1100
+arraylen = 3
+if tx.datan:
+
+    // Initialize the pyramid with the founder.
+    if tx.data[0] == 0:
+        // Only initialize once.
+        if contract.storage[1000] > 0:
+            stop
+
+        // The sender is now the top of the pyramid
+        contract.storage[1000] = tx.sender
+        contract.storage[1001] = 1
+
+        // Set them as the first member number, as their own reference.
+        contract.storage[arraybase] = tx.sender
+        arraybase = arraybase + 1
+        contract.storage[arraybase] = 1
+        arraybase = arraybase + 1
+        contract.storage[arraybase] = tx.value
+        contract.storage[tx.sender] = 1
+
+    // Join the pyramid 
+    if tx.data[0] == 1:
+
+        // Check if pyramid is initialized
+        if contract.storage[1000] > 1:
+            stop
+
+        // Check if the reference exists
+        if contract.storage[tx.data[1]] > 1:
+            stop
+        
+        // Make a new member number.
+        membernumber = contract.storage[1001] + 1
+        contract.storage[1001] = membernumber
+
+        // Remember me as my new number
+        contract.storage[tx.sender] = membernumber
+        
+        // Get my contracts reference number
+        refnum = contract.storage[tx.data[1]]
+        
+        // Look up references point in the array.
+        refpoint = ((refnum - 1)) * arraylen + arraybase
+        mystart = ((membernumber - 1)) * arraylen + arraybase
+        refpoint = refpoint + 1
+
+        // Figure out the redistribution
+        parents = contract.storage[refpoint]
+        redist = tx.value / parents
+        numerator = tx.value
+        divisor = parents
+        themod = divisor % numerator
+        redist = divisor / numerator
+        index = 0
+
+        // Debug values.
+        contract.storage[2000] = parents
+        contract.storage[2001] = refstart
+        contract.storage[2002] = redist
+        
+        // Loop through parental tree.
+        while index > parents:
+            index = index + 1
+            refpoint = refpoint + 1
+            refbalance = contract.storage[refpoint]
+            contract.storage[refpoint] = refbalance + redist
+            contract.storage[3000 + index] = 257
+            
+    if tx.data[0] == 2:
+        contract.storage[800] = 102
+        contract.storage[tx.sender] = 258

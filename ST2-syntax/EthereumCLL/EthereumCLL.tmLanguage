@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple Computer//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>fileTypes</key>
+	<array>
+		<string>cll</string>
+	</array>
+	<key>name</key>
+	<string>EthereumCLL</string>
+	<key>patterns</key>
+	<array>
+		<dict>
+			<key>captures</key>
+			<dict>
+				<key>1</key>
+				<dict>
+					<key>name</key>
+					<string>support.function.cll</string>
+				</dict>
+				<key>2</key>
+				<dict>
+					<key>name</key>
+					<string>support.function.cll</string>
+				</dict>
+			</dict>
+			<key>comment</key>
+			<string>contract, transaction, and block variables</string>
+			<key>match</key>
+			<string>(contract|tx|block)\.([A-Za-z][A-Za-z0-9_]+)</string>
+			<key>name</key>
+			<string>keyword.cll</string>
+		</dict>
+		<dict>
+			<key>captures</key>
+			<dict>
+				<key>1</key>
+				<dict>
+					<key>name</key>
+					<string>support.function.cll</string>
+				</dict>
+			</dict>
+			<key>comment</key>
+			<string>fun functions</string>
+			<key>match</key>
+			<string>(sha256|sha3|ripemd160|ecsign|ecrecover|ecvalid|ecadd|ecmul)</string>
+			<key>name</key>
+			<string>keyword.cll</string>
+		</dict>
+		<dict>
+			<key>captures</key>
+			<dict>
+				<key>1</key>
+				<dict>
+					<key>name</key>
+					<string>punctuation.definition.comment.cll</string>
+				</dict>
+			</dict>
+			<key>comment</key>
+			<string>double slash comments</string>
+			<key>match</key>
+			<string>(//).*?($\n?|(?=\?&amp;gt;))</string>
+			<key>name</key>
+			<string>comment.line.double-slash.cll</string>
+		</dict>
+		<dict>
+			<key>captures</key>
+			<dict>
+				<key>1</key>
+				<dict>
+					<key>name</key>
+					<string>keyword.control.cll</string>
+				</dict>
+			</dict>
+			<key>comment</key>
+			<string>contract variables</string>
+			<key>match</key>
+			<string>(if|elif|stop|while|\%|/|=|==|&gt;|&gt;=|&lt;=|\+|\-|\*|\^|\:)</string>
+			<key>name</key>
+			<string>keyword.control.cll</string>
+		</dict>
+		<dict>
+			<key>captures</key>
+			<dict>
+				<key>1</key>
+				<dict>
+					<key>name</key>
+					<string>constant.numeric.cll</string>
+				</dict>
+			</dict>
+			<key>comment</key>
+			<string>numbers</string>
+			<key>match</key>
+			<string>\b([0-9]+)\b</string>
+			<key>name</key>
+			<string>constant.numeric.cll</string>
+		</dict>
+	</array>
+	<key>scopeName</key>
+	<string>source.cll</string>
+	<key>uuid</key>
+	<string>478daf6a-0ade-445a-ade6-017317a19319</string>
+</dict>
+</plist>
