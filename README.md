@@ -3,21 +3,22 @@ Ethereum CLL Preprocessor
 
 **Features**
 
-Allows you to enter c-like comments starting with `//`
+- Allows you to enter c-like `//` commented lines
 
-    ```cpp
-    // This is a comment.
-    val = tx.data[0]
+```cpp
+// This is a comment.
+val = tx.data[0]
+```
+- Strips empty lines.
 
-Strips empty lines.
+- Allows you to use c++ preprocessor-like defines
 
-Allows you to use c++ preprocessor-like defines
+ ```cpp
+ #define STATIC_ADDRESS 1001
+ contract.storage[STATIC_ADDRESS] = 257
+```
 
-    ```cpp
-    #define STATIC_ADDRESS 1001
-    contract.storage[STATIC_ADDRESS] = 257
-
-Compiles your code using a branch of the Ethereum CLL Compiler: https://github.com/ethereum/compiler
+- Compiles your code using a branch of the Ethereum CLL Compiler: https://github.com/ethereum/compiler
 
 ----
 **Examples**
@@ -39,8 +40,9 @@ You just have to init the submodules to
 
 
 ---
+**To Do**
 
-Examples:
+- Add `/* block style */` comments
 
 ---
 
