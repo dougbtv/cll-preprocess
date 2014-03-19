@@ -29,7 +29,7 @@ class cllPreProcessor {
 			}
 
 			// Stop at multi-equal
-			if (preg_match("/^\=\=/", $trimmer)) {
+			if (preg_match("/^\=\=\=/", $trimmer)) {
 				break;
 			}
 			$result .= $l."\n";

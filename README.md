@@ -20,6 +20,18 @@ Ethereum CLL Preprocessor
 
 - Compiles your code using a branch of the Ethereum CLL Compiler: https://github.com/ethereum/compiler
 
+- Allows you to compile just a snippet of code by deliminating the rest of the code with 3-or-more `=` signs (handy for debugging, or making reference code / notes)
+
+ ```cpp
+ // This gets processed.
+ foo = 1 + 2
+ contract.storage[100] = foo
+ ====
+ // This won't get processed.
+ bar = 3 + 4
+ contract.storage[101] = bar
+```
+
 ----
 **Examples**
 
@@ -43,6 +55,7 @@ You just have to init the submodules to
 **To Do**
 
 - Add `/* block style */` comments
+- Add in-line comments (note yet supported) e.g. `if condition: // comment here`
 
 ---
 
