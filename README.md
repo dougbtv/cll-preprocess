@@ -41,21 +41,21 @@ Right now, it just outputs the compiled code to stdout, and you copy and paste i
 
 Try it with the included cll file.
 
-    ./compile.sh pyramid.cll
+    ./compile.sh example.cll
 
 ----
 **Setup**
 
-You just have to init the submodules to 
+You just have to init the submodules, and update, which will clone the other projects.
 
-    [user@host]$ git submodule init
-
+    [user@host dir]$ git submodule init
+    [user@host dir]$ git submodule update
 
 ---
 **To Do**
 
 - Add `/* block style */` comments
-- Add in-line comments (note yet supported) e.g. `if condition: // comment here`
+- Add in-line comments (not yet supported) e.g. `if condition: // comment here`
 
 ---
 

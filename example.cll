@@ -1,0 +1,11 @@
+contract.storage[1000] = 15 / 3
+contract.storage[1001] = 10 - 5
+contract.storage[1002] = 10 + 5
+contract.storage[1003] = 3 * 5
+contract.storage[1004] = 10^2
+if 10 > 11:
+    contract.storage[100] = 100
+if 11 < 10:
+    contract.storage[100] = 100
+if 10 == 11:
+    contract.storage[100] = 100
