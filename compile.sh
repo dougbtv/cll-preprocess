@@ -51,7 +51,7 @@ if [[ -e $1 ]]; then
 	php -q cllPreProcessor.php $1
 	eval "python docompile.py | tee $TEMP_FILE"
 	if [ $DO_INSPECT == 1 ]; then
-		if [ $DO_TRACE == 1]; then
+		if [ $DO_TRACE == 1 ]; then
 			php -q postInspection.php $TEMP_FILE "$TRACE_REGEX"
 		else
 			php -q postInspection.php $TEMP_FILE
