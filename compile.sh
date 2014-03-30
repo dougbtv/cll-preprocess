@@ -5,7 +5,7 @@ usage()
 cat << EOF
 usage: $0 inputfile.cll {options}
 
-This script run the test1 or test2 over a machine.
+This script will compile CLL into EVM3-ASM code for Ethereum
 
 OPTIONS:
    -h      
