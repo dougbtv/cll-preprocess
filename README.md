@@ -37,28 +37,40 @@ Ethereum CLL Preprocessor
 
 Right now, it just outputs the compiled code to stdout, and you copy and paste it. All you have to do is call the bash script using your `.cll` file location as the first parameter.
 
+To just simply compile a .cll file, call the `compile.sh` script like so:
+
     ./compile.sh yourfile.cll
 
 Try it with the included cll file.
 
     ./compile.sh example.cll
 
+If you're looking to "inspect" the compiled EVM3-ASM, you can call it with the `-i` flag:
+
+    ./compile.sh example.cll -i
+
+And if you want to further trace something in that EVM3-ASM, you can add a regex which will point out the lines which match your regex, a la:
+
+    ./compile.sh example.cll -i -t "JMP$" 
+
+Which would match all `JMP` instructions, but not JMPI instructions.
+
+
 ----
 **Setup**
 
-You just have to init the submodules, and update, which will clone the other projects.
+You just have to init the [submodules](http://git-scm.com/book/en/Git-Tools-Submodules), and update, which will clone the other projects.
 
     [user@host dir]$ git submodule init
     [user@host dir]$ git submodule update
+
+The submodules it includes are:
+
+- [CLL Compiler](https://github.com/ethereum/compiler) on my PoC3 compatible branch.
+- [Sublime Text 2 Syntax Higlighting Module](https://github.com/dougbtv/cll-syntaxhighlighter-st2)
 
 ---
 **To Do**
 
 - Add `/* block style */` comments
 - Add in-line comments (not yet supported) e.g. `if condition: // comment here`
-
----
-
-This contains a submodule! http://git-scm.com/book/en/Git-Tools-Submodules
-
-It's the cll compiler @ https://github.com/ethereum/compiler
