@@ -3,18 +3,16 @@ Ethereum CLL Preprocessor
 
 **Features**
 
-- Allows you to enter c-like `//` commented lines
+- Allows you to enter c-like `//` comments
 
  ```cpp
  // This is a comment.
  val = tx.data[0]
- val = tx.data[1] // so is this.
-
- /* and blocks
-    like so */
-
- val = /* and inline */tx.data[1]
-
+ other = tx.data[1] // so is this.
+ /* 
+    and blocks
+    like so 
+ */
 ```
 - Strips empty lines.
 
@@ -38,15 +36,16 @@ Ethereum CLL Preprocessor
  bar = 3 + 4
  contract.storage[101] = bar
 ```
+
 ----
 **Extra Language Benefits**
 
-Carries a PoC3 compatible branch of the [CLL Compiler](https://github.com/ethereum/compiler) which has some modifications.
+Carries a PoC3 compatible branch of the [CLL Compiler](https://github.com/ethereum/compiler) as a submodule, which has some modifications.
 
 One of which is it allows you to define functions.
 
  ```cpp
- // Definite it.
+ // Define a function.
  def timesten(multiply):
      result = multiply * 10
      contract.storage[1024] = result
@@ -79,7 +78,7 @@ And if you want to further trace something in that EVM3-ASM, you can add a regex
 
     ./compile.sh example.cll -i -t "JMP$" 
 
-Which would match all `JMP` instructions, but not JMPI instructions.
+Which would match all `JMP` instructions, but not `JMPI` instructions.
 
 
 ----
