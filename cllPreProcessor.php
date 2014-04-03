@@ -6,14 +6,28 @@ class cllPreProcessor {
 
 	var $outfile = "/tmp/compile.cll";
 
+	var $skipmultiequal = false;
+
 	function cllPreProcessor($argv) {
 
 		$file = file_get_contents($argv[1]);
+
+		foreach ($argv as $key => $parameter) {
+			if ($key > 1) {
+				switch ($parameter) {
+					case "skipmultiequal":
+						$this->skipmultiequal = true;
+						break;
+					default:
+				}
+			}
+		}
 
 		$file = $this->processDefines($file);
 
 		$result = "";
 		$lines = preg_split("/\n/", $file);
+		$finding_block = false;
 		foreach ($lines as $l) {
 
 			$trimmer = trim($l);
@@ -23,16 +37,58 @@ class cllPreProcessor {
 				continue;
 			}
 
-			// Ignore comments.
-			if (preg_match("/^\/\//", $trimmer)) {
-				continue;
+			// Process comments.
+			if ($finding_block) {
+				// We're finding a block. So, let's see if we found the end.
+				if (preg_match("|\*/|", $trimmer)) {
+					// That's the end.
+					// Keep the rest.
+					$l = preg_replace("|^.*?\*/(.*)$|", "$1", $l);
+					// And we're not looking for a block anymore.
+					$finding_block = false;
+				} else {
+					// Nope, just dump these lines.
+					continue;
+				}
 			}
 
-			// Stop at multi-equal
-			if (preg_match("/^\=\=\=/", $trimmer)) {
-				break;
+			// Single line comments.
+			if (preg_match("/\/\//", $trimmer)) {
+				// If this is at the beginning of the line, ignore the line.
+				if (preg_match("/^\/\//", $trimmer)) {
+					continue;
+				} else {
+					// There's other stuff on the line, so let's keep that.
+					$l = trim(preg_replace("/^(.+?)\/\/.+$/", "$1", $trimmer));
+				}
 			}
-			$result .= $l."\n";
+
+			// Block comments.
+			if (preg_match("|/\*|", $trimmer)) {
+				// Ok, so we found a comment.
+				if (preg_match("|\*/|", $trimmer)) {
+					// That's an inline comment.
+					$l = preg_replace("|^(.*)/\*.*\*/(.*)$|", "$1$2", $l);
+				} else {
+					// That's a block comment.
+					// Keep everyting before the opening.
+					$l = preg_replace("|^(.*)/\*|", "$1", $l);
+					// Note that we're looking for more blocks.
+					$finding_block = true;
+				}
+			}
+
+			if (!$this->skipmultiequal) {
+				// Stop at multi-equal
+				if (preg_match("/^\=\=\=/", $trimmer)) {
+					break;
+				}
+			}
+
+			$retrim = trim($l);
+			if (strlen($retrim)) {
+				$result .= $l."\n";
+			}
 		}
 
 		file_put_contents($this->outfile, $result);

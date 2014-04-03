@@ -9,13 +9,17 @@ This script will compile CLL into EVM3-ASM code for Ethereum
 
 OPTIONS:
    -h      
-   		Show this message
+      Show this message
    
    -i      
-   		Enable inspection (shows assembled output, line-by-line)
+      Enable inspection (shows assembled output, line-by-line)
    
    -t "regex"
-   		Used with -i. Trace lines in the assembled piece using "regex".
+      Used with -i. Trace lines in the assembled piece using "regex".
+
+   -s 
+      Skips "====" style lines, and compiles each 
+      block between "====" as independant programs.
 
 EOF
 }
@@ -23,8 +27,9 @@ EOF
 DO_INSPECT=0
 DO_TRACE=0
 TRACE_REGEX=
+SKIP_MULTIEQUAL=
 # This skips the first argument, so we can use it as the input file name (always required)
-while getopts “hit:” OPTION ${@:2}; 
+while getopts “hit:s” OPTION ${@:2}; 
 do
      case $OPTION in
          h)
@@ -35,11 +40,15 @@ do
              DO_INSPECT=1
              ;;
          t)
-		 	 DO_TRACE=1
+             DO_TRACE=1
              TRACE_REGEX=$OPTARG
              ;;
+         s)
+             SKIP_MULTIEQUAL=skipmultiequal
+             ;;
+
          ?)
-			 usage
+             usage
              exit
              ;;
      esac
@@ -48,7 +57,7 @@ done
 TEMP_FILE=/tmp/inspect.asm
 echo $1
 if [[ -e $1 ]]; then
-	php -q cllPreProcessor.php $1
+	php -q cllPreProcessor.php $1 $SKIP_MULTIEQUAL
 	eval "python docompile.py | tee $TEMP_FILE"
 	if [ $DO_INSPECT == 1 ]; then
 		if [ $DO_TRACE == 1 ]; then

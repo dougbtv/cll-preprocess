@@ -8,6 +8,13 @@ Ethereum CLL Preprocessor
  ```cpp
  // This is a comment.
  val = tx.data[0]
+ val = tx.data[1] // so is this.
+
+ /* and blocks
+    like so */
+
+ val = /* and inline */tx.data[1]
+
 ```
 - Strips empty lines.
 
@@ -31,6 +38,25 @@ Ethereum CLL Preprocessor
  bar = 3 + 4
  contract.storage[101] = bar
 ```
+----
+**Extra Language Benefits**
+
+Carries a PoC3 compatible branch of the [CLL Compiler](https://github.com/ethereum/compiler) which has some modifications.
+
+One of which is it allows you to define functions.
+
+ ```cpp
+ // Definite it.
+ def timesten(multiply):
+     result = multiply * 10
+     contract.storage[1024] = result
+     return result
+
+ // And call it.
+ contract.storage[2048] = timesten(50)
+```
+
+...You can use multiple parameters, too. Such as `def multiparam(foo,bar,quux)` and call it like `multiparam(1,2,3)`
 
 ----
 **Examples**
@@ -72,5 +98,4 @@ The submodules it includes are:
 ---
 **To Do**
 
-- Add `/* block style */` comments
-- Add in-line comments (not yet supported) e.g. `if condition: // comment here`
+- Still more

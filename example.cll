@@ -1,3 +1,37 @@
+// Example of comments.
+#define TESTING 3
+
+foo = 1
+bar = 2
+quux = TESTING
+
+if quux: // comments with your line.
+    quux = quux * 2
+else:
+    foo = foo * /* inline comment */10
+
+/*
+multi-line
+     comment 
+          block
+*/
+==============
+// Function Example
+def timesten(multiply):
+    result = multiply * 10
+    contract.storage[1024] = result
+    return result
+
+def barefunction(ding,dong):
+    // these don't get set?
+    contract.storage[512] = ding
+    contract.storage[513] = dong
+
+// Set a variable to a return from a function.
+contract.storage[2048] = timesten(50)
+// Or... Make a bare function call.
+barefunction(512,1024)
+==============
 contract.storage[1000] = 15 / 3
 contract.storage[1001] = 10 - 5
 contract.storage[1002] = 10 + 5
@@ -9,3 +43,4 @@ if 11 < 10:
     contract.storage[100] = 100
 if 10 == 11:
     contract.storage[100] = 100
+    contract.storage[1000] = 15 / 3
